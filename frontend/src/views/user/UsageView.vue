@@ -799,7 +799,6 @@ const exportToCSV = async () => {
       'Cache Creation Tokens',
       'Rate Multiplier',
       'Billed Cost',
-      'Original Cost',
       'First Token (ms)',
       'Duration (ms)'
     ]
@@ -817,7 +816,6 @@ const exportToCSV = async () => {
         log.cache_creation_tokens,
         1,
         log.actual_cost.toFixed(8),
-        log.total_cost.toFixed(8),
         log.first_token_ms ?? '',
         log.duration_ms
       ].map(escapeCSVValue)
