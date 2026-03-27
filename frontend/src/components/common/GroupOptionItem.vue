@@ -66,16 +66,6 @@ const props = withDefaults(defineProps<Props>(), {
   userRateMultiplier: null
 })
 
-// Whether user has a custom rate different from default
-const hasCustomRate = computed(() => {
-  return (
-    props.userRateMultiplier !== null &&
-    props.userRateMultiplier !== undefined &&
-    props.rateMultiplier !== undefined &&
-    props.userRateMultiplier !== props.rateMultiplier
-  )
-})
-
 // Rate pill color matches platform badge color
 const ratePillClass = computed(() => {
   switch (props.platform) {
