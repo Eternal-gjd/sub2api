@@ -98,6 +98,11 @@ func (s *FrontendServer) Middleware() gin.HandlerFunc {
 		if cleanPath == "" {
 			cleanPath = "index.html"
 		}
+		// A nested directory request must resolve to its own index.html.
+		// Otherwise it falls through to the main Sub2API SPA index.
+		if strings.HasSuffix(cleanPath, "/") {
+			cleanPath += "index.html"
+		}
 
 		// For index.html or SPA routes, serve with injected settings
 		if cleanPath == "index.html" || !s.fileExists(cleanPath) {
@@ -319,6 +324,9 @@ func ServeEmbeddedFrontend() gin.HandlerFunc {
 		cleanPath := strings.TrimPrefix(path, "/")
 		if cleanPath == "" {
 			cleanPath = "index.html"
+		}
+		if strings.HasSuffix(cleanPath, "/") {
+			cleanPath += "index.html"
 		}
 
 		if file, err := distFS.Open(cleanPath); err == nil {

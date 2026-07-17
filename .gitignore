@@ -136,6 +136,7 @@ docs/*
 !docs/PAYMENT_CN.md
 !docs/ADMIN_PAYMENT_INTEGRATION_API.md
 !docs/ASYNC_IMAGE_TASKS.md
+!docs/GPT_IMAGE_PLAYGROUND_INTEGRATION.md
 !docs/legal/
 !docs/legal/*.md
 .serena/
@@ -143,3 +144,15 @@ docs/*
 frontend/coverage/
 aicodex
 output/
+
+# Keep the Playground integration maintenance helpers.
+!scripts/
+scripts/*
+!scripts/build-playground-integration.sh
+
+# GPT Image Playground integration
+image-playground/node_modules/
+image-playground/dist/
+image-playground/.git/
+frontend/public/gpt-image-playground/
+bin/sub2api-playground

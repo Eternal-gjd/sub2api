@@ -99,7 +99,11 @@ func SecurityHeaders(cfg config.CSPConfig, getFrameSrcOrigins func() []string) g
 		}
 
 		c.Header("X-Content-Type-Options", "nosniff")
-		c.Header("X-Frame-Options", "DENY")
+		if strings.HasPrefix(c.Request.URL.Path, "/gpt-image-playground/") {
+			c.Header("X-Frame-Options", "SAMEORIGIN")
+		} else {
+			c.Header("X-Frame-Options", "DENY")
+		}
 		c.Header("Referrer-Policy", "strict-origin-when-cross-origin")
 		if isAPIRoutePath(c) {
 			c.Next()
@@ -107,6 +111,13 @@ func SecurityHeaders(cfg config.CSPConfig, getFrameSrcOrigins func() []string) g
 		}
 
 		if cfg.Enabled {
+			path := c.Request.URL.Path
+			if path == "/image-playground" || strings.HasPrefix(path, "/gpt-image-playground/") {
+				finalPolicy = strings.ReplaceAll(finalPolicy, "frame-src ", "frame-src 'self' ")
+			}
+			if strings.HasPrefix(path, "/gpt-image-playground/") {
+				finalPolicy = strings.ReplaceAll(finalPolicy, "frame-ancestors 'none'", "frame-ancestors 'self'")
+			}
 			// Generate nonce for this request
 			nonce, err := GenerateNonce()
 			if err != nil {

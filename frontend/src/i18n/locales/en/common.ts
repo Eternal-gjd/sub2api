@@ -153,6 +153,7 @@ export default {
     dashboard: 'Dashboard',
     announcements: 'Announcements',
     apiKeys: 'API Keys',
+    imagePlayground: 'GPT Image Playground',
     batchImage: 'Batch Images',
     usage: 'Usage',
     redeem: 'Redeem',

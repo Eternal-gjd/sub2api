@@ -97,6 +97,35 @@ func TestSecurityHeaders(t *testing.T) {
 		assert.Equal(t, "strict-origin-when-cross-origin", w.Header().Get("Referrer-Policy"))
 	})
 
+	t.Run("allows_same_origin_framing_for_embedded_image_playground", func(t *testing.T) {
+		cfg := config.CSPConfig{Enabled: true}
+		middleware := SecurityHeaders(cfg, nil)
+
+		w := httptest.NewRecorder()
+		c, _ := gin.CreateTestContext(w)
+		c.Request = httptest.NewRequest(http.MethodGet, "/gpt-image-playground/index.html", nil)
+
+		middleware(c)
+
+		assert.Equal(t, "SAMEORIGIN", w.Header().Get("X-Frame-Options"))
+		assert.Contains(t, w.Header().Get("Content-Security-Policy"), "frame-ancestors 'self'")
+		assert.NotContains(t, w.Header().Get("Content-Security-Policy"), "frame-ancestors 'none'")
+		assert.Contains(t, w.Header().Get("Content-Security-Policy"), "frame-src 'self'")
+	})
+
+	t.Run("allows_image_playground_shell_to_embed_same_origin_app", func(t *testing.T) {
+		cfg := config.CSPConfig{Enabled: true}
+		middleware := SecurityHeaders(cfg, nil)
+
+		w := httptest.NewRecorder()
+		c, _ := gin.CreateTestContext(w)
+		c.Request = httptest.NewRequest(http.MethodGet, "/image-playground", nil)
+
+		middleware(c)
+
+		assert.Contains(t, w.Header().Get("Content-Security-Policy"), "frame-src 'self'")
+	})
+
 	t.Run("csp_disabled_no_csp_header", func(t *testing.T) {
 		cfg := config.CSPConfig{Enabled: false}
 		middleware := SecurityHeaders(cfg, nil)
