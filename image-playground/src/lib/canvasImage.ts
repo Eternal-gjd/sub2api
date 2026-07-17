@@ -10,9 +10,15 @@ export async function loadImage(dataUrl: string): Promise<HTMLImageElement> {
 }
 
 export async function dataUrlToBlob(dataUrl: string, fallbackType = 'image/png'): Promise<Blob> {
-  const response = await fetch(dataUrl)
-  const blob = await response.blob()
-  return blob.type ? blob : new Blob([await blob.arrayBuffer()], { type: fallbackType })
+  const match = /^data:([^;,]*)(?:;[^,]*)?,(.*)$/s.exec(dataUrl)
+  if (!match) throw new Error('无效的图片数据')
+
+  const mimeType = match[1] || fallbackType
+  const payload = match[2]
+  const bytes = dataUrl.slice(0, dataUrl.indexOf(',')).toLowerCase().includes(';base64')
+    ? Uint8Array.from(atob(payload), (char) => char.charCodeAt(0))
+    : new TextEncoder().encode(decodeURIComponent(payload))
+  return new Blob([bytes], { type: mimeType })
 }
 
 export async function imageDataUrlToPngBlob(dataUrl: string): Promise<Blob> {
