@@ -154,6 +154,7 @@ export default {
     announcements: 'Announcements',
     apiKeys: 'API Keys',
     imagePlayground: 'GPT Image Playground',
+    imgxStudio: 'ImgX Studio',
     batchImage: 'Batch Images',
     usage: 'Usage',
     redeem: 'Redeem',

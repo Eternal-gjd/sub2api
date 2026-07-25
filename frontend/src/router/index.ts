@@ -239,6 +239,16 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/imgx-studio',
+    name: 'ImgXStudio',
+    component: () => import('@/views/user/ImgXStudioView.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresAdmin: false,
+      title: 'ImgX Studio'
+    }
+  },
+  {
     path: '/usage',
     name: 'Usage',
     component: () => import('@/views/user/UsageView.vue'),

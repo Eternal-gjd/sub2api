@@ -99,7 +99,7 @@ func SecurityHeaders(cfg config.CSPConfig, getFrameSrcOrigins func() []string) g
 		}
 
 		c.Header("X-Content-Type-Options", "nosniff")
-		if strings.HasPrefix(c.Request.URL.Path, "/gpt-image-playground/") {
+		if isEmbeddedImageWorkspacePath(c.Request.URL.Path) {
 			c.Header("X-Frame-Options", "SAMEORIGIN")
 		} else {
 			c.Header("X-Frame-Options", "DENY")
@@ -117,7 +117,7 @@ func SecurityHeaders(cfg config.CSPConfig, getFrameSrcOrigins func() []string) g
 			// needs to permit the same-origin Playground iframe; restricting this to
 			// /image-playground makes the first client-side visit fail until refresh.
 			finalPolicy = addToDirectiveIfMissing(finalPolicy, "frame-src", "'self'")
-			if strings.HasPrefix(path, "/gpt-image-playground/") {
+			if isEmbeddedImageWorkspacePath(path) {
 				finalPolicy = strings.ReplaceAll(finalPolicy, "frame-ancestors 'none'", "frame-ancestors 'self'")
 			}
 			// Generate nonce for this request
@@ -133,6 +133,10 @@ func SecurityHeaders(cfg config.CSPConfig, getFrameSrcOrigins func() []string) g
 		}
 		c.Next()
 	}
+}
+
+func isEmbeddedImageWorkspacePath(path string) bool {
+	return strings.HasPrefix(path, "/gpt-image-playground/") || strings.HasPrefix(path, "/imgx-studio/")
 }
 
 func isAPIRoutePath(c *gin.Context) bool {

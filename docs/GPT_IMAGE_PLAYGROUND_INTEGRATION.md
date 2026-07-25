@@ -10,8 +10,10 @@
 
 ## 集成功能
 
-- 用户入口：`/image-playground`
-- 内置静态应用：`/gpt-image-playground/`
+- 用户入口：`/image-playground`（原 GPT Image Playground）
+- 第二生图入口：`/imgx-studio`（ImgX Studio）
+- 原内置静态应用：`/gpt-image-playground/`
+- ImgX 内置静态应用：`/imgx-studio/`
 - 复用当前用户的 Sub2API 登录状态
 - 自动选择 active 且允许图片生成的 `gpt-image` 分组 Key
 - 同源调用 `/v1/images/*`

@@ -12,9 +12,19 @@ mkdir -p "$ROOT/frontend/public/gpt-image-playground"
 cp -a dist/. "$ROOT/frontend/public/gpt-image-playground/"
 popd >/dev/null
 
+pushd "$ROOT/imgx-studio" >/dev/null
+npm ci
+npm test -- --run
+npm run lint
+SUB2API_EMBEDDED=1 npm run build
+rm -rf "$ROOT/frontend/public/imgx-studio"
+mkdir -p "$ROOT/frontend/public/imgx-studio"
+cp -a out/. "$ROOT/frontend/public/imgx-studio/"
+popd >/dev/null
+
 pushd "$ROOT/frontend" >/dev/null
 pnpm install --frozen-lockfile
-pnpm test:run src/views/user/__tests__/ImagePlaygroundView.spec.ts
+pnpm test:run src/views/user/__tests__/ImagePlaygroundView.spec.ts src/views/user/__tests__/ImageWorkspaceViews.spec.ts
 pnpm build
 popd >/dev/null
 

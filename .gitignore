@@ -156,4 +156,12 @@ image-playground/node_modules/
 image-playground/dist/
 image-playground/.git/
 frontend/public/gpt-image-playground/
+
+# ImgX Studio integration
+imgx-studio/node_modules/
+imgx-studio/.next/
+imgx-studio/out/
+imgx-studio/.git/
+frontend/public/imgx-studio/
+
 bin/sub2api-playground
