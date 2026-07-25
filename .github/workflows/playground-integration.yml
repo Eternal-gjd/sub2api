@@ -44,8 +44,36 @@ jobs:
           path: frontend/public/gpt-image-playground/
           retention-days: 1
 
+  imgx-studio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: imgx-studio/package-lock.json
+      - name: Install dependencies
+        working-directory: imgx-studio
+        run: npm ci
+      - name: Run ImgX tests
+        working-directory: imgx-studio
+        run: npm test -- --run
+      - name: Lint ImgX
+        working-directory: imgx-studio
+        run: npm run lint
+      - name: Build embedded ImgX
+        working-directory: imgx-studio
+        run: SUB2API_EMBEDDED=1 npm run build
+      - name: Upload embedded ImgX
+        uses: actions/upload-artifact@v7
+        with:
+          name: imgx-studio-dist
+          path: imgx-studio/out/
+          retention-days: 1
+
   frontend:
-    needs: playground
+    needs: [playground, imgx-studio]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -61,12 +89,16 @@ jobs:
         with:
           name: gpt-image-playground-dist
           path: frontend/public/gpt-image-playground/
+      - uses: actions/download-artifact@v8
+        with:
+          name: imgx-studio-dist
+          path: frontend/public/imgx-studio/
       - name: Install frontend dependencies
         working-directory: frontend
         run: pnpm install --frozen-lockfile
       - name: Run integration view tests
         working-directory: frontend
-        run: pnpm test:run src/views/user/__tests__/ImagePlaygroundView.spec.ts
+        run: pnpm test:run src/views/user/__tests__/ImagePlaygroundView.spec.ts src/views/user/__tests__/ImageWorkspaceViews.spec.ts
       - name: Build Sub2API frontend
         working-directory: frontend
         run: pnpm build
