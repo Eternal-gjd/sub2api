@@ -126,6 +126,23 @@ func TestSecurityHeaders(t *testing.T) {
 		assert.Contains(t, w.Header().Get("Content-Security-Policy"), "frame-src 'self'")
 	})
 
+	t.Run("allows_spa_client_navigation_to_embed_same_origin_app", func(t *testing.T) {
+		cfg := config.CSPConfig{Enabled: true}
+		middleware := SecurityHeaders(cfg, nil)
+
+		w := httptest.NewRecorder()
+		c, _ := gin.CreateTestContext(w)
+		// The initial document can be any SPA route. Its CSP remains active after
+		// client-side navigation to /image-playground.
+		c.Request = httptest.NewRequest(http.MethodGet, "/admin/dashboard", nil)
+
+		middleware(c)
+
+		assert.Contains(t, w.Header().Get("Content-Security-Policy"), "frame-src 'self'")
+		assert.Contains(t, w.Header().Get("Content-Security-Policy"), "frame-ancestors 'none'")
+		assert.Equal(t, "DENY", w.Header().Get("X-Frame-Options"))
+	})
+
 	t.Run("csp_disabled_no_csp_header", func(t *testing.T) {
 		cfg := config.CSPConfig{Enabled: false}
 		middleware := SecurityHeaders(cfg, nil)

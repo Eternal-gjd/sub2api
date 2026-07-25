@@ -112,9 +112,11 @@ func SecurityHeaders(cfg config.CSPConfig, getFrameSrcOrigins func() []string) g
 
 		if cfg.Enabled {
 			path := c.Request.URL.Path
-			if path == "/image-playground" || strings.HasPrefix(path, "/gpt-image-playground/") {
-				finalPolicy = strings.ReplaceAll(finalPolicy, "frame-src ", "frame-src 'self' ")
-			}
+			// The CSP belongs to the top-level SPA document and remains active
+			// across client-side route changes. Every SPA entry response therefore
+			// needs to permit the same-origin Playground iframe; restricting this to
+			// /image-playground makes the first client-side visit fail until refresh.
+			finalPolicy = addToDirectiveIfMissing(finalPolicy, "frame-src", "'self'")
 			if strings.HasPrefix(path, "/gpt-image-playground/") {
 				finalPolicy = strings.ReplaceAll(finalPolicy, "frame-ancestors 'none'", "frame-ancestors 'self'")
 			}
@@ -176,6 +178,17 @@ func directiveHasValue(policy, directive, value string) bool {
 		return false
 	}
 	return false
+}
+
+func addToDirectiveIfMissing(policy, directive, value string) string {
+	if directiveHasValue(policy, directive, value) {
+		return policy
+	}
+	prefix := directive + " "
+	if strings.Contains(policy, prefix) {
+		return strings.Replace(policy, prefix, prefix+value+" ", 1)
+	}
+	return addToDirective(policy, directive, value)
 }
 
 // addToDirective adds a value to a specific CSP directive.
