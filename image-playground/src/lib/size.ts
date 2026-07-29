@@ -160,6 +160,23 @@ const TIER_PIXEL_BUDGET: Record<SizeTier, number> = {
   '4K': MAX_PIXELS,  // 8_294_400
 }
 
+export function classifyImageSizeTier(size: string): SizeTier | null {
+  const match = size.match(SIZE_PATTERN)
+  if (!match) return null
+
+  const pixels = Number(match[1]) * Number(match[2])
+  if (!Number.isSafeInteger(pixels) || pixels <= 0) return null
+  if (pixels <= TIER_PIXEL_BUDGET['1K']) return '1K'
+  if (pixels <= TIER_PIXEL_BUDGET['2K']) return '2K'
+  return '4K'
+}
+
+export function resolveImageTierModel(model: string, size: string): string {
+  if (model.trim().toLowerCase() !== 'gpt-image-2') return model
+  const tier = classifyImageSizeTier(size)
+  return tier ? `gpt-image-2-${tier.toLowerCase()}` : model
+}
+
 /**
  * 常用比例优先使用官方示例或通用显示标准，避免按像素预算计算出不常见尺寸。
  * 其中 21:9 的常见显示器尺寸会按 16 倍数约束做轻微规整。

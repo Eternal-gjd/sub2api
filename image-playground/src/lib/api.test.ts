@@ -10,6 +10,65 @@ describe('callImageApi', () => {
     vi.useRealTimers()
   })
 
+  it.each([
+    ['1024x1024', 'gpt-image-2-1k'],
+    ['2048x2048', 'gpt-image-2-2k'],
+    ['3840x2160', 'gpt-image-2-4k'],
+  ])('routes Images API size %s through model alias %s', async (size, expectedModel) => {
+    const fetchMock = vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({
+      data: [{ b64_json: 'aW1hZ2U=' }],
+    }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    }))
+
+    await callImageApi({
+      settings: {
+        ...DEFAULT_SETTINGS,
+        model: 'gpt-image-2',
+        profiles: DEFAULT_SETTINGS.profiles.map((profile) => ({
+          ...profile,
+          model: 'gpt-image-2',
+        })),
+      },
+      prompt: 'prompt',
+      params: { ...DEFAULT_PARAMS, size },
+      inputImageDataUrls: [],
+    })
+
+    const [, init] = fetchMock.mock.calls[0]
+    const body = JSON.parse(String((init as RequestInit).body))
+    expect(body.model).toBe(expectedModel)
+  })
+
+  it('routes image edits through the model alias matching the requested size', async () => {
+    const fetchMock = vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({
+      data: [{ b64_json: 'aW1hZ2U=' }],
+    }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    }))
+
+    await callImageApi({
+      settings: {
+        ...DEFAULT_SETTINGS,
+        model: 'gpt-image-2',
+        profiles: DEFAULT_SETTINGS.profiles.map((profile) => ({
+          ...profile,
+          model: 'gpt-image-2',
+        })),
+      },
+      prompt: 'prompt',
+      params: { ...DEFAULT_PARAMS, size: '3840x2160' },
+      inputImageDataUrls: ['data:image/png;base64,aW1hZ2U='],
+    })
+
+    const [, init] = fetchMock.mock.calls[0]
+    const body = (init as RequestInit).body as FormData
+    expect(body.get('model')).toBe('gpt-image-2-4k')
+    expect(body.get('size')).toBe('3840x2160')
+  })
+
   it.each([false, true])(
     'adds the prompt rewrite guard on Responses API when Codex CLI mode is %s',
     async (codexCli) => {

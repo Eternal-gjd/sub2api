@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { calculateImageSize } from './size'
+import { calculateImageSize, resolveImageTierModel } from './size'
 
 describe('calculateImageSize', () => {
   it('uses common 16:9 display resolutions for the built-in tiers', () => {
@@ -16,5 +16,25 @@ describe('calculateImageSize', () => {
 
   it('falls back to budget-based sizing for custom ratios', () => {
     expect(calculateImageSize('2K', '5:4')).toBe('2288x1824')
+  })
+})
+
+describe('resolveImageTierModel', () => {
+  it.each([
+    ['1024x1024', 'gpt-image-2-1k'],
+    ['1536x1024', 'gpt-image-2-1k'],
+    ['2048x2048', 'gpt-image-2-2k'],
+    ['2160x1440', 'gpt-image-2-2k'],
+    ['3840x2160', 'gpt-image-2-4k'],
+  ])('routes gpt-image-2 size %s through %s', (size, expected) => {
+    expect(resolveImageTierModel('gpt-image-2', size)).toBe(expected)
+  })
+
+  it.each([
+    'gpt-image-1',
+    'gpt-image-2-1k',
+    'custom-image-model',
+  ])('leaves model %s unchanged', (model) => {
+    expect(resolveImageTierModel(model, '3840x2160')).toBe(model)
   })
 })

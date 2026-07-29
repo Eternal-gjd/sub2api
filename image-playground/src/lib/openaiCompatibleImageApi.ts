@@ -1,6 +1,7 @@
 import { DEFAULT_STREAM_PARTIAL_IMAGES, type ApiProfile, type CustomProviderDefinition, type CustomProviderPollMapping, type CustomProviderResultMapping, type CustomProviderSubmitMapping, type ImageApiResponse, type ImageResponseItem, type ResponsesApiResponse, type ResponsesOutputItem, type TaskParams } from '../types'
 import { dataUrlToBlob, imageDataUrlToPngBlob, maskDataUrlToPngBlob } from './canvasImage'
 import { buildApiUrl, readClientDevProxyConfig, shouldUseApiProxy } from './devProxy'
+import { resolveImageTierModel } from './size'
 import {
   assertImageInputPayloadSize,
   assertMaskEditFileSize,
@@ -561,6 +562,7 @@ async function callImagesApiSingle(opts: CallApiOptions, profile: ApiProfile): P
   const useApiProxy = shouldUseApiProxy(profile.apiProxy, proxyConfig)
   const requestHeaders = createRequestHeaders(profile)
   const paths = createOpenAICompatiblePaths()
+  const requestModel = resolveImageTierModel(profile.model, params.size)
 
   const controller = new AbortController()
   const timeoutId = setTimeout(() => controller.abort(), profile.timeout * 1000)
@@ -570,7 +572,7 @@ async function callImagesApiSingle(opts: CallApiOptions, profile: ApiProfile): P
 
     if (isEdit) {
       const formData = new FormData()
-      formData.append('model', profile.model)
+      formData.append('model', requestModel)
       formData.append('prompt', prompt)
       formData.append('size', params.size)
       formData.append('output_format', params.output_format)
@@ -631,7 +633,7 @@ async function callImagesApiSingle(opts: CallApiOptions, profile: ApiProfile): P
       })
     } else {
       const body: Record<string, unknown> = {
-        model: profile.model,
+        model: requestModel,
         prompt,
         size: params.size,
         output_format: params.output_format,
