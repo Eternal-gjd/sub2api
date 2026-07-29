@@ -27,7 +27,8 @@ describe('image workspace integrations', () => {
     expect(routerSource).toMatch(/path: '\/imgx-studio'[\s\S]*?requiresAuth: true/)
   })
 
-  it('adds a separate sidebar entry without replacing the original one', () => {
-    expect(sidebarSource).toContain("{ path: '/imgx-studio', label: t('nav.imgxStudio'), icon: ImagePlaygroundIcon")
+  it('keeps ImgX Studio routable without exposing it in the sidebar', () => {
+    expect(routerSource).toContain("path: '/imgx-studio'")
+    expect(sidebarSource).not.toContain("{ path: '/imgx-studio', label: t('nav.imgxStudio')")
   })
 })
