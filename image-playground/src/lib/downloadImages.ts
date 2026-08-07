@@ -108,7 +108,8 @@ async function getImageBlob(imageIdOrUrl: string): Promise<Blob> {
     src = await ensureImageCached(imageIdOrUrl) ?? imageIdOrUrl
   }
 
-  const res = await fetch(src)
+  if (src.startsWith('data:')) return dataUrlToBlob(src)
+  const res = await fetch(src, { credentials: 'omit' })
   if (!res.ok && !src.startsWith('data:')) throw new Error(`读取图片失败：${imageIdOrUrl}`)
   return await res.blob()
 }
@@ -122,6 +123,19 @@ function triggerDownload(blob: Blob, fileName: string) {
   a.click()
   document.body.removeChild(a)
   window.setTimeout(() => URL.revokeObjectURL(url), 0)
+}
+
+function dataUrlToBlob(dataUrl: string): Blob {
+  const match = dataUrl.match(/^data:([^;,]+)?(;base64)?,(.*)$/s)
+  if (!match) throw new Error('图片数据格式无效')
+  const mime = match[1] || 'application/octet-stream'
+  if (match[2]) {
+    const binary = atob(match[3])
+    const bytes = new Uint8Array(binary.length)
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i)
+    return new Blob([bytes], { type: mime })
+  }
+  return new Blob([decodeURIComponent(match[3])], { type: mime })
 }
 
 function getBlobExtension(blob: Blob): string {

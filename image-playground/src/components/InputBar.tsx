@@ -616,6 +616,8 @@ export default function InputBar() {
   const cameraInputRef = useRef<HTMLInputElement>(null)
   const replaceFileInputRef = useRef<HTMLInputElement>(null)
   const textareaRef = useRef<HTMLDivElement>(null)
+  // Enter also commits IME composition; do not treat that key event as submit/newline.
+  const isComposingRef = useRef(false)
   const cardRef = useRef<HTMLDivElement>(null)
   const imagesRef = useRef<HTMLDivElement>(null)
   const prevHeightRef = useRef(42)
@@ -1233,6 +1235,8 @@ export default function InputBar() {
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.nativeEvent.isComposing || isComposingRef.current || e.keyCode === 229) return
+
     if (showAtImageMenu) {
       if (e.key === 'ArrowDown') {
         e.preventDefault()
@@ -2064,6 +2068,11 @@ export default function InputBar() {
               ref={textareaRef}
               contentEditable
               suppressContentEditableWarning
+              onCompositionStart={() => { isComposingRef.current = true }}
+              onCompositionEnd={() => {
+                isComposingRef.current = false
+                syncPromptFromContentEditable()
+              }}
               onInput={(e) => {
                 isUserInputRef.current = true
                 const el = e.currentTarget
