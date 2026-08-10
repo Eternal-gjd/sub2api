@@ -136,7 +136,9 @@ func SecurityHeaders(cfg config.CSPConfig, getFrameSrcOrigins func() []string) g
 }
 
 func isEmbeddedImageWorkspacePath(path string) bool {
-	return strings.HasPrefix(path, "/gpt-image-playground/") || strings.HasPrefix(path, "/imgx-studio/")
+	return strings.HasPrefix(path, "/gpt-image-playground/") ||
+		strings.HasPrefix(path, "/imgx-studio/") ||
+		strings.HasPrefix(path, "/img-prompt/")
 }
 
 func isAPIRoutePath(c *gin.Context) bool {

@@ -12,6 +12,15 @@ mkdir -p "$ROOT/frontend/public/gpt-image-playground"
 cp -a dist/. "$ROOT/frontend/public/gpt-image-playground/"
 popd >/dev/null
 
+pushd "$ROOT/img-prompt" >/dev/null
+npm ci
+npm run lint
+SUB2API_EMBEDDED=1 npm run build
+rm -rf "$ROOT/frontend/public/img-prompt"
+mkdir -p "$ROOT/frontend/public/img-prompt"
+cp -a out/. "$ROOT/frontend/public/img-prompt/"
+popd >/dev/null
+
 pushd "$ROOT/imgx-studio" >/dev/null
 npm ci
 npm test -- --run

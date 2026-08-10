@@ -101,6 +101,7 @@ func TestSecurityHeaders(t *testing.T) {
 		for _, path := range []string{
 			"/gpt-image-playground/index.html",
 			"/imgx-studio/index.html",
+			"/img-prompt/zh/index.html",
 		} {
 			t.Run(path, func(t *testing.T) {
 				cfg := config.CSPConfig{Enabled: true}

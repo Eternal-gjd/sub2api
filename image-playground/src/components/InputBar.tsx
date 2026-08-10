@@ -12,7 +12,9 @@ import { collectAgentRoundOutputImageSlots } from '../lib/agentImageReferences'
 import { useHintTooltip } from '../hooks/useHintTooltip'
 import { downloadImageEntriesAsZip, downloadImageIds, formatExportFileTime, getTaskOutputImageZipEntries } from '../lib/downloadImages'
 import SizePickerModal from './SizePickerModal'
-import { CloseIcon, CollapseIcon, ExpandIcon } from './icons'
+import ImgPromptModal from './ImgPromptModal'
+import { CloseIcon, CollapseIcon, DictionaryIcon, ExpandIcon } from './icons'
+import type { ImgPromptApplyPayload } from '../lib/imgPromptBridge'
 import ButtonTooltip from './input/buttonTooltip'
 import DragUploadOverlay from './input/dragUploadOverlay'
 import InputBatchBars from './input/inputBatchBars'
@@ -634,6 +636,7 @@ export default function InputBar() {
   const [imageHintId, setImageHintId] = useState<string | null>(null)
   const [mobileCollapsed, setMobileCollapsed] = useState(false)
   const [showSizePicker, setShowSizePicker] = useState(false)
+  const [showImgPrompt, setShowImgPrompt] = useState(false)
   const [showMobileUploadMenu, setShowMobileUploadMenu] = useState(false)
   const [maskPreviewUrl, setMaskPreviewUrl] = useState('')
   const [imageDragIndex, setImageDragIndex] = useState<number | null>(null)
@@ -921,6 +924,18 @@ export default function InputBar() {
       }
     }, 0)
   }, [prompt, setPrompt, syncPromptFromContentEditable])
+
+  const applyImgPrompt = useCallback(({ action, prompt: nextText }: ImgPromptApplyPayload) => {
+    if (action === 'insert') {
+      insertPromptTextAtSelection(nextText)
+    } else if (action === 'append') {
+      const separator = prompt.trim() ? ', ' : ''
+      setPrompt(`${prompt.trimEnd()}${separator}${nextText}`)
+    } else {
+      setPrompt(nextText)
+    }
+    showToast('已应用 IMGPrompt 提示词。', 'success')
+  }, [insertPromptTextAtSelection, prompt, setPrompt, showToast])
 
   const handleClearPrompt = useCallback(() => {
     isUserInputRef.current = false
@@ -1977,6 +1992,8 @@ export default function InputBar() {
         />
       )}
 
+      <ImgPromptModal open={showImgPrompt} onClose={() => setShowImgPrompt(false)} onApply={applyImgPrompt} />
+
       <div
         data-input-bar
         className={`fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 w-full max-w-4xl px-3 sm:px-4 transition-all duration-300${promptExpanded ? ' flex flex-col' : ''}`}
@@ -2176,6 +2193,14 @@ export default function InputBar() {
               {renderParams('grid-cols-6')}
 
               <div className="flex gap-2 flex-shrink-0 mb-0.5">
+                <button
+                  type="button"
+                  onClick={() => setShowImgPrompt(true)}
+                  className="p-2.5 rounded-xl bg-gray-200 dark:bg-white/[0.06] hover:bg-gray-300 dark:hover:bg-white/[0.1] text-gray-500 dark:text-gray-300 transition-all shadow-sm hover:shadow"
+                  aria-label="打开 IMGPrompt 提示词词典"
+                >
+                  <DictionaryIcon className="h-5 w-5" />
+                </button>
                 <div
                   className="relative"
                   onMouseEnter={() => setAttachHover(true)}
@@ -2238,6 +2263,14 @@ export default function InputBar() {
               </div>
 
               <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowImgPrompt(true)}
+                  className="p-2.5 rounded-xl bg-gray-200 dark:bg-white/[0.06] hover:bg-gray-300 dark:hover:bg-white/[0.1] text-gray-500 dark:text-gray-300 transition-all shadow-sm flex-shrink-0"
+                  aria-label="打开 IMGPrompt 提示词词典"
+                >
+                  <DictionaryIcon className="h-5 w-5" />
+                </button>
                 <div
                   className="relative"
                   onMouseEnter={() => setAttachHover(true)}

@@ -1,0 +1,128 @@
+{
+  "Metadata": {
+    "title": "IMGPrompt — Constructor Visual Gratis de Prompts IA",
+    "description": "Constructor de prompts IA gratis y open source para Midjourney, FLUX, Veo, Kling. Clic en etiquetas bilingües — sin login.",
+    "ogTitle": "IMGPrompt — Genera prompts IA con un clic",
+    "ogDescription": "Haz clic en etiquetas bilingües para componer prompts IA para Midjourney, FLUX, Nano Banana, Veo, Kling. Gratis, local, open source."
+  },
+  "ToolPage": {
+    "section1": "Tema",
+    "section2": "Categoría",
+    "section3": "Etiquetas",
+    "currentSelection": "Seleccionado",
+    "fallback-other": "Otros",
+    "tagMode-multicolor": "Multicolor",
+    "tagMode-monochrome": "Monocromo",
+    "tagsLoading": "Cargando etiquetas…",
+    "tagsError": "No se cargaron las etiquetas",
+    "retry": "Reintentar"
+  },
+  "ResultSection": {
+    "tooltip-light": "Insertar prompts de iluminación (iluminación cinematográfica, rayos crepusculares, etc.)",
+    "prompt-light": "Iluminación",
+    "tooltip-polish": "Insertar prompts de calidad (resolución/detalle/estilo)",
+    "prompt-polish": "Calidad",
+    "insertSuccess": "Insertado",
+    "tooltip-negative": "Copiar prompts negativos al portapapeles (evitar defectos)",
+    "prompt-negative": "Negativo",
+    "prompt": "Prompt",
+    "button-copy": "Copiar",
+    "clearSuccess": "Borrado",
+    "button-clear": "Borrar",
+    "tooltip-translate": "Escribe en cualquier idioma: se traducirá automáticamente al inglés y se insertará",
+    "button-translate": "Traducir",
+    "translateSuccess": "Traducido e insertado",
+    "translateEmptyError": "Escribe algún contenido",
+    "translateFailError": "Traducción fallida",
+    "tooltip-randomColor": "Reemplazar palabras de color aleatoriamente",
+    "button-randomcolor": "Colores aleatorios",
+    "prompt-translation": "Traducción",
+    "translating": "Traduciendo...",
+    "randomColor-success": "Se reemplazaron {count} palabras de color",
+    "randomColor-noMatch": "No hay palabras de color para reemplazar",
+    "translateLabel": "Traducir e insertar",
+    "placeholder-prompt": "Elige etiquetas para componerlo, o escribe tu propio prompt",
+    "placeholder-translate": "p. ej. un gato al atardecer"
+  },
+  "CopyToClipboard": {
+    "empty": "El contenido está vacío, nada que copiar.",
+    "unsupported": "Tu navegador no admite operaciones de portapapeles; intenta copiar manualmente o usa otro navegador",
+    "success": "Copiado correctamente, ya puedes pegarlo en tu herramienta de dibujo IA",
+    "failure": "Error al copiar, copia el contenido manualmente"
+  },
+  "feedback": {
+    "feedback1": "Comentarios y sugerencias",
+    "feedback2": "Si encuentras algún problema durante el uso o tienes alguna sugerencia o idea, ¡no dudes en hacérmelo saber! Tus comentarios influirán directamente en el desarrollo y la mejora de funciones futuras, lo que nos ayudará a crear una herramienta que satisfaga mejor las necesidades de todos.",
+    "feedback3": "Describe en detalle tu caso de uso o el problema que encontraste, o comparte tus ideas creativas. Analizaré atentamente cada comentario y realizaré ajustes y optimizaciones lo antes posible.",
+    "reaction0": "Me gusta",
+    "reaction1": "Apoyo",
+    "reaction2": "Genial",
+    "reaction3": "¿Qué?",
+    "reaction4": "No lo entiendo",
+    "placeholder": "Deja un mensaje, no es necesario iniciar sesión (introduce tu correo electrónico para recibir notificaciones de respuesta)"
+  },
+  "Home": {
+    "h1": "IMGPrompt · Elige prompts como <hl>pigmentos</hl>",
+    "tagline": "5000+ etiquetas bilingües · prompts de imagen/vídeo IA en segundos · Midjourney / FLUX / GPT-Image / Veo / Kling"
+  },
+  "FAQ": {
+    "title": "Preguntas frecuentes",
+    "q1": {
+      "question": "¿Qué es IMGPrompt? ¿Qué modelos de IA admite?",
+      "answer": "IMGPrompt es un editor de prompts para modelos de texto a imagen que te ayuda a componer prompts en inglés mediante etiquetas visuales con rótulos bilingües. Soporta oficialmente Nano Banana, GPT-image-2, Midjourney, FLUX, Seedance, Veo y Kling (imagen y vídeo); los prompts generados también funcionan con Stable Diffusion, DALL·E y cualquier modelo que acepte una sintaxis compatible."
+    },
+    "q2": {
+      "question": "¿Es gratis? ¿Necesito registrarme? ¿Se sube mi información?",
+      "answer": "Completamente gratis, sin registro ni inicio de sesión. Toda la composición de prompts se procesa localmente en tu navegador, sin base de datos en servidor; solo al usar la función de traducción ese texto se envía a servicios de traducción de terceros. El proyecto es de código abierto en GitHub: puedes auditar el código o autoalojarlo."
+    },
+    "q7": {
+      "question": "¿En qué se diferencia IMGPrompt de PromptHero, Lexica o PromptBase?",
+      "answer": "IMGPrompt es un compositor de prompts por clic, no un buscador de prompts. PromptHero, Lexica y PromptBase te permiten navegar o comprar prompts ajenos; IMGPrompt te permite componer el tuyo haciendo clic en etiquetas visuales bilingües. Funciona enteramente en tu navegador sin login ni subida, mientras que esas plataformas generalmente requieren una cuenta para el acceso completo."
+    },
+    "q8": {
+      "question": "¿IMGPrompt soporta modelos de video IA como Veo, Kling y Runway?",
+      "answer": "Sí. IMGPrompt genera prompts para modelos de video como Google Veo, Kling, Seedance, Runway y Hailuo, además de modelos de imagen. La mayoría de sitios de prompts solo cubren modelos de imagen, por lo que IMGPrompt es una de las pocas herramientas gratuitas que cubre la nueva ola de generación de video IA."
+    },
+    "q9": {
+      "question": "¿Puedo usar IMGPrompt sin saber inglés?",
+      "answer": "Sí. La interfaz está disponible en 18 idiomas, y cada etiqueta muestra tanto inglés como tu idioma local. Haces clic en etiquetas en tu idioma; IMGPrompt arma el prompt en inglés (que es lo que los modelos IA de imagen y video realmente necesitan). El botón Traducir también convierte cualquier frase de tu idioma en prompt en inglés con un clic."
+    }
+  },
+  "Schema": {
+    "featureList": [
+      "Gratis y open source (MIT) — sin login",
+      "Modelos de imagen: Midjourney, FLUX, Nano Banana, GPT-image-2, Stable Diffusion, DALL·E",
+      "Modelos de video: Veo, Kling, Runway, Hailuo, Seedance",
+      "Interfaz en 18 idiomas con etiquetas visuales bilingües — sin dominio del inglés",
+      "Composición de prompts por etiquetas cliqueables",
+      "Presets integrados de iluminación y calidad",
+      "Biblioteca de prompts negativos curada",
+      "Traducción al inglés en un clic",
+      "Recomendaciones inteligentes de etiquetas",
+      "Contador en vivo de 380 caracteres",
+      "Totalmente local — sin subida, sin rastreo",
+      "Open source en GitHub",
+      "Apps de escritorio para Windows, macOS, Linux"
+    ]
+  },
+  "Nav": {
+    "guide": "Guía",
+    "otherTools": "Más herramientas",
+    "legendtalk": "Mesa redonda de pensadores IA",
+    "aishort": "AI Short",
+    "tools": "Caja de herramientas IA",
+    "community": "Comunidad",
+    "github": "Ver en GitHub",
+    "theme": "Cambiar entre tema claro y oscuro",
+    "language": "Seleccionar idioma",
+    "languageSearch": "Buscar idioma",
+    "languageEmpty": "Ningún idioma coincide",
+    "skipToPrompt": "Saltar al cuadro de prompt"
+  },
+  "Guide": {
+    "fallbackNotice": "Esta página aún no está traducida a tu idioma; se muestra la versión en inglés."
+  },
+  "Footer": {
+    "signature": "Gratis y de código abierto · Sin registro · Todo en tu navegador"
+  }
+}

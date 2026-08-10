@@ -544,6 +544,23 @@ func TestFrontendServer_Middleware(t *testing.T) {
 		assert.Contains(t, w.Body.String(), "/imgx-studio/_next/")
 	})
 
+	t.Run("serves_nested_imgprompt_index_instead_of_main_spa", func(t *testing.T) {
+		provider := &mockSettingsProvider{settings: map[string]string{"test": "value"}}
+		server, err := NewFrontendServer(provider)
+		require.NoError(t, err)
+
+		router := gin.New()
+		router.Use(server.Middleware())
+
+		w := httptest.NewRecorder()
+		req := httptest.NewRequest(http.MethodGet, "/img-prompt/zh/", nil)
+		router.ServeHTTP(w, req)
+
+		require.Equal(t, http.StatusOK, w.Code)
+		assert.Contains(t, w.Body.String(), "IMGPrompt")
+		assert.Contains(t, w.Body.String(), "/img-prompt/_next/")
+	})
+
 	t.Run("skips_api_routes", func(t *testing.T) {
 		provider := &mockSettingsProvider{
 			settings: map[string]string{"test": "value"},

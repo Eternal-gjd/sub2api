@@ -1,0 +1,128 @@
+{
+  "Metadata": {
+    "title": "IMGPrompt - 免费可视化 AI 绘画提示词词典",
+    "description": "免费开源 AI 提示词词典。点选中英双语标签，秒出 Midjourney、FLUX、Veo 等模型的图像/视频提示词。浏览器本地运行，无需登录。",
+    "ogTitle": "IMGPrompt - 中文 AI 绘画提示词词典",
+    "ogDescription": "点选双语标签，秒出 Midjourney、FLUX、Veo 等 AI 图像/视频提示词。免费、本地、无需登录。"
+  },
+  "ToolPage": {
+    "section1": "主体",
+    "section2": "类别",
+    "section3": "标签",
+    "currentSelection": "已选",
+    "fallback-other": "其他",
+    "tagMode-multicolor": "多彩",
+    "tagMode-monochrome": "单色",
+    "tagsLoading": "正在载入标签…",
+    "tagsError": "标签没能载入",
+    "retry": "重试"
+  },
+  "ResultSection": {
+    "tooltip-light": "插入人像布光提示词（电影光效、暮光射线等）",
+    "prompt-light": "人像布光",
+    "tooltip-polish": "插入画质增强提示词（分辨率增强/细节锐化/艺术风格强化）",
+    "prompt-polish": "画质优化",
+    "insertSuccess": "已插入提示词",
+    "tooltip-negative": "复制负面提示词到剪贴板（避免常见瑕疵要素）",
+    "prompt-negative": "负面词",
+    "prompt": "提示词",
+    "button-copy": "复制",
+    "clearSuccess": "已清空",
+    "button-clear": "清空",
+    "tooltip-translate": "输入任意语言，自动翻译为英文并插入",
+    "button-translate": "翻译",
+    "translateSuccess": "已翻译并插入",
+    "translateEmptyError": "请输入内容",
+    "translateFailError": "翻译失败",
+    "tooltip-randomColor": "随机替换颜色词",
+    "button-randomcolor": "随机换色",
+    "prompt-translation": "提示词译文",
+    "translating": "翻译中…",
+    "randomColor-success": "已替换 {count} 处颜色词",
+    "randomColor-noMatch": "没有可替换的颜色词",
+    "translateLabel": "翻译并插入",
+    "placeholder-prompt": "点标签自动拼好，也可以直接在这里写",
+    "placeholder-translate": "例：夕阳下的猫"
+  },
+  "CopyToClipboard": {
+    "empty": "内容为空，无需复制",
+    "unsupported": "当前浏览器不支持剪贴板操作，请尝试手动复制或使用其他浏览器",
+    "success": "已复制，可粘贴至 AI 绘画工具",
+    "failure": "复制失败，请手动复制"
+  },
+  "feedback": {
+    "feedback1": "反馈与建议",
+    "feedback2": "如果你在使用过程中遇到了问题，或者有任何建议和想法，欢迎随时告诉我！你的反馈将直接影响到未来功能的开发和改进，帮助我们一起打造更符合大家需求的工具。",
+    "feedback3": "请详细描述一下你的使用场景或遇到的问题，或者分享你的创意想法。我会认真看每一条反馈，并尽快做出调整和优化。",
+    "reaction0": "赞一个",
+    "reaction1": "支持下",
+    "reaction2": "有点酷",
+    "reaction3": "啥玩意",
+    "reaction4": "看不懂",
+    "placeholder": "请留言，无需登录（填写邮箱可获回复提醒）"
+  },
+  "Home": {
+    "h1": "IMGPrompt · 像挑<hl>颜料</hl>一样，挑提示词",
+    "tagline": "5000+ 中英双语标签 · 秒出专业级 AI 图像/视频提示词 · Midjourney / FLUX / GPT-Image / Veo / Kling"
+  },
+  "FAQ": {
+    "title": "常见问题",
+    "q1": {
+      "question": "IMGPrompt 是什么？支持哪些 AI 绘画模型？",
+      "answer": "IMGPrompt 是一款专为文生图模型打造的提示词编辑器，通过可视化的标签和中英双语显示帮助你快速组合出英文提示词。官方适配 Nano Banana、GPT-image-2、Midjourney、FLUX、Seedance、Veo、Kling 等主流图像/视频模型；生成的 prompt 也兼容 Stable Diffusion、DALL·E 以及其他接受兼容语法的模型。"
+    },
+    "q2": {
+      "question": "需要登录或付费吗？数据会上传到服务器吗？",
+      "answer": "完全免费，无需注册或登录。所有提示词组合和输入内容都在浏览器本地处理，不依赖后端数据库；仅当你使用翻译功能时，待译文本会发送给第三方翻译接口。项目在 GitHub 开源，可自行审计代码或自部署。"
+    },
+    "q7": {
+      "question": "IMGPrompt 跟 PromptHero、Lexica、PromptBase 有什么区别？",
+      "answer": "IMGPrompt 是「点选构建」工具，不是 prompt 搜索引擎。PromptHero、Lexica、PromptBase 让你浏览或购买别人写好的 prompt；IMGPrompt 让你通过点击中英双语标签自己组合。同时 IMGPrompt 完全在浏览器本地运行，无需登录、不上传任何数据；上述平台通常需要注册账号才能完整使用。"
+    },
+    "q8": {
+      "question": "IMGPrompt 支持 AI 视频模型 Veo、Kling、Runway 吗？",
+      "answer": "支持。IMGPrompt 不仅适配 Midjourney、FLUX、Nano Banana 等图像模型，也支持 Google Veo、Kling、Seedance、Runway、Hailuo 等视频模型。多数同类站点只覆盖图像模型，IMGPrompt 是少数同时免费支持新一代 AI 视频生成的工具之一。"
+    },
+    "q9": {
+      "question": "不会英文也能用 IMGPrompt 吗？",
+      "answer": "可以。界面共 18 种语言，每个标签同时显示英文和你的母语标签。用母语点选，IMGPrompt 自动用英文（AI 图像和视频模型实际需要的语言）组合 prompt。「翻译」按钮还能一键把母语句子转成英文 prompt。"
+    }
+  },
+  "Schema": {
+    "featureList": [
+      "完全免费 + 开源（MIT），无需登录",
+      "图像模型：Midjourney、FLUX、Nano Banana、GPT-image-2、Stable Diffusion、DALL·E",
+      "视频模型：Veo、Kling、Runway、Hailuo、Seedance",
+      "18 种语言界面 + 中英双语标签，无需英文基础",
+      "点选式标签组合提示词",
+      "内置光线与画质增强预设",
+      "精选负面提示词库",
+      "一键翻译为英文",
+      "智能标签推荐",
+      "实时 380 字符计数",
+      "完全本地运行 — 不上传、不追踪",
+      "GitHub 开源",
+      "Windows / macOS / Linux 桌面客户端"
+    ]
+  },
+  "Nav": {
+    "guide": "指南",
+    "otherTools": "更多工具",
+    "legendtalk": "AI 思想家圆桌",
+    "aishort": "AI Short",
+    "tools": "AI 工具箱",
+    "community": "社区与交流群",
+    "github": "在 GitHub 上查看",
+    "theme": "切换明暗主题",
+    "language": "选择语言",
+    "languageSearch": "搜索语言",
+    "languageEmpty": "没有匹配的语言",
+    "skipToPrompt": "跳到提示词框"
+  },
+  "Guide": {
+    "fallbackNotice": "本页暂未翻译成你的语言，当前显示可用版本。"
+  },
+  "Footer": {
+    "signature": "免费开源 · 无需登录 · 全程在你的浏览器里运行"
+  }
+}

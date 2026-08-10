@@ -1,0 +1,128 @@
+{
+  "Metadata": {
+    "title": "IMGPrompt — 無料のAI画像プロンプトビルダー",
+    "description": "無料・オープンソースのビジュアルAIプロンプトビルダー。Midjourney/FLUX/Veo 向けの画像・動画プロンプトに対応。ローカル動作・ログイン不要。",
+    "ogTitle": "IMGPrompt — クリックだけでAIプロンプト生成",
+    "ogDescription": "二言語タグをクリックして Midjourney・FLUX・Veo 向けのAI画像・動画プロンプトを瞬時に作成。完全無料・ローカル動作。"
+  },
+  "ToolPage": {
+    "section1": "主体",
+    "section2": "カテゴリ",
+    "section3": "タグ",
+    "currentSelection": "選択済み",
+    "fallback-other": "その他",
+    "tagMode-multicolor": "カラー",
+    "tagMode-monochrome": "モノクロ",
+    "tagsLoading": "タグを読み込み中…",
+    "tagsError": "タグを読み込めませんでした",
+    "retry": "再試行"
+  },
+  "ResultSection": {
+    "tooltip-light": "ポートレート照明のプロンプトを挿入（映画照明、夕暮れの光など）",
+    "prompt-light": "照明",
+    "tooltip-polish": "画質向上プロンプトを挿入（解像度/ディテール/スタイル）",
+    "prompt-polish": "画質",
+    "insertSuccess": "挿入完了",
+    "tooltip-negative": "ネガティブプロンプトをクリップボードにコピー（よくある欠陥を回避）",
+    "prompt-negative": "ネガティブ",
+    "prompt": "プロンプト",
+    "button-copy": "コピー",
+    "clearSuccess": "クリア完了",
+    "button-clear": "クリア",
+    "tooltip-translate": "どの言語で入力しても、英語に自動翻訳して挿入します",
+    "button-translate": "翻訳",
+    "translateSuccess": "翻訳して挿入完了",
+    "translateEmptyError": "内容を入力してください",
+    "translateFailError": "翻訳に失敗しました",
+    "tooltip-randomColor": "カラーワードをランダムに置換",
+    "button-randomcolor": "色をランダム変更",
+    "prompt-translation": "翻訳文",
+    "translating": "翻訳中…",
+    "randomColor-success": "{count} 件のカラーワードを置換しました",
+    "randomColor-noMatch": "置換するカラーワードがありません",
+    "translateLabel": "翻訳してそのまま追加",
+    "placeholder-prompt": "タグを選ぶと自動で組み上がります。直接入力もできます",
+    "placeholder-translate": "例：夕日の中の猫"
+  },
+  "CopyToClipboard": {
+    "empty": "内容が空のため、コピーするものがありません",
+    "unsupported": "お使いのブラウザはクリップボード操作をサポートしていません。手動でコピーするか、別のブラウザを使用してください。",
+    "success": "コピーしました。AI画像生成ツールに貼り付けてご利用ください。",
+    "failure": "コピーに失敗しました。手動でコピーしてください。"
+  },
+  "feedback": {
+    "feedback1": "フィードバックと提案",
+    "feedback2": "使用中に問題が発生した場合や、ご提案やアイデアがある場合は、お気軽にお知らせください。皆様のフィードバックは、将来の機能の開発と改善に直接影響し、皆様のニーズをよりよく満たすツールの作成に役立ちます。",
+    "feedback3": "使用事例や発生した問題を詳しく記述するか、独創的なアイデアを共有してください。フィードバックを一つ一つ慎重に検討し、できるだけ早く調整と最適化を行います。",
+    "reaction0": "いいね！",
+    "reaction1": "応援する",
+    "reaction2": "クール",
+    "reaction3": "なにこれ？",
+    "reaction4": "よくわからない",
+    "placeholder": "メッセージを残してください。ログインは必要ありません（返信通知を受け取るにはメールアドレスを入力してください）"
+  },
+  "Home": {
+    "h1": "IMGPrompt · <hl>絵の具</hl>を選ぶように、プロンプトを選ぶ",
+    "tagline": "5000+ のバイリンガルタグ · AI画像/動画プロンプトを数秒で · Midjourney / FLUX / GPT-Image / Veo / Kling"
+  },
+  "FAQ": {
+    "title": "よくある質問",
+    "q1": {
+      "question": "IMGPrompt は何ですか？どの AI 画像モデルに対応していますか？",
+      "answer": "IMGPrompt はテキストから画像を生成するモデル向けのプロンプトエディタで、英語と自国語を併記した視覚的なタグによって英語プロンプトを素早く組み立てられます。公式対応は Nano Banana、GPT-image-2、Midjourney、FLUX、Seedance、Veo、Kling（画像・動画）で、生成されたプロンプトは Stable Diffusion、DALL·E、その他互換文法を受け入れる任意のモデルでも使えます。"
+    },
+    "q2": {
+      "question": "無料ですか？サインアップは必要ですか？データはアップロードされますか？",
+      "answer": "完全無料で、登録もログインも不要です。プロンプトの組み立てと入力はすべてブラウザ内で処理され、バックエンドのデータベースもありません。翻訳機能を使うときだけ、対象テキストがサードパーティの翻訳サービスに送信されます。プロジェクトは GitHub でオープンソース公開されており、コードの監査やセルフホストも可能です。"
+    },
+    "q7": {
+      "question": "IMGPromptは PromptHero、Lexica、PromptBase と何が違いますか？",
+      "answer": "IMGPromptは「クリックして組み立てる」ツールであり、プロンプト検索エンジンではありません。PromptHero、Lexica、PromptBaseが他人の書いたプロンプトを閲覧・購入するサービスであるのに対し、IMGPromptは二言語のビジュアルタグをクリックして自分で組み立てます。さらに完全にブラウザ内でローカル動作し、ログイン不要・アップロードなし。一方それらのプラットフォームでは、フル機能の利用に通常アカウント登録が必要です。"
+    },
+    "q8": {
+      "question": "IMGPromptはVeo、Kling、RunwayなどのAI動画モデルに対応していますか？",
+      "answer": "対応しています。Midjourney、FLUX、Nano Bananaなどの画像モデルに加え、Google Veo、Kling、Seedance、Runway、HailuoなどのAI動画モデル向けのプロンプトも生成できます。多くのプロンプトサイトは画像モデルのみ対応で、IMGPromptは新世代のAI動画生成にも対応する数少ない無料ツールです。"
+    },
+    "q9": {
+      "question": "英語ができなくてもIMGPromptを使えますか？",
+      "answer": "使えます。UIは18言語、各タグは英語と母国語の両方が表示されます。母国語でタグをクリックすると、IMGPromptが英語（AI画像・動画モデルが必要とする言語）でプロンプトを組み立てます。「翻訳」ボタンで母国語の文章を英語プロンプトに一発変換することもできます。"
+    }
+  },
+  "Schema": {
+    "featureList": [
+      "完全無料・オープンソース(MIT)、ログイン不要",
+      "画像モデル：Midjourney、FLUX、Nano Banana、GPT-image-2、Stable Diffusion、DALL·E",
+      "動画モデル：Veo、Kling、Runway、Hailuo、Seedance",
+      "18言語UI＋二言語ビジュアルタグ、英語が苦手でも使える",
+      "クリックで組み立てるタグ式プロンプト構成",
+      "ライティング・画質ブースター内蔵",
+      "厳選ネガティブプロンプト集",
+      "ワンクリックで英訳",
+      "スマートタグ推薦",
+      "380文字リアルタイムカウンター",
+      "完全ローカル動作 — アップロード・追跡なし",
+      "GitHubでオープンソース公開",
+      "Windows・macOS・Linuxデスクトップアプリ"
+    ]
+  },
+  "Nav": {
+    "guide": "ガイド",
+    "otherTools": "その他のツール",
+    "legendtalk": "AI思想家ラウンドテーブル",
+    "aishort": "AI Short",
+    "tools": "AIツールボックス",
+    "community": "コミュニティ",
+    "github": "GitHub で見る",
+    "theme": "ライト／ダークを切り替え",
+    "language": "言語を選択",
+    "languageSearch": "言語を検索",
+    "languageEmpty": "一致する言語がありません",
+    "skipToPrompt": "プロンプト欄へスキップ"
+  },
+  "Guide": {
+    "fallbackNotice": "このページはまだ日本語に翻訳されていません。英語版を表示しています。"
+  },
+  "Footer": {
+    "signature": "無料・オープンソース · ログイン不要 · すべてブラウザ内で動作"
+  }
+}

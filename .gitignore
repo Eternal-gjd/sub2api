@@ -164,4 +164,11 @@ imgx-studio/out/
 imgx-studio/.git/
 frontend/public/imgx-studio/
 
+# IMGPrompt integration
+img-prompt/node_modules/
+img-prompt/.next/
+img-prompt/out/
+img-prompt/.git/
+frontend/public/img-prompt/
+
 bin/sub2api-playground

@@ -1,0 +1,128 @@
+{
+  "Metadata": {
+    "title": "IMGPrompt — Trình tạo prompt AI trực quan miễn phí",
+    "description": "Trình xây prompt AI miễn phí, mã nguồn mở cho Midjourney, FLUX, Veo, Kling. Nhấp thẻ song ngữ — không cần đăng nhập.",
+    "ogTitle": "IMGPrompt — Tạo prompt AI chỉ với một cú nhấp",
+    "ogDescription": "Nhấp thẻ song ngữ để soạn prompt AI cho Midjourney, FLUX, Nano Banana, Veo, Kling. Miễn phí, cục bộ, mã nguồn mở."
+  },
+  "ToolPage": {
+    "section1": "Chủ đề",
+    "section2": "Danh mục",
+    "section3": "Thẻ",
+    "currentSelection": "Đã chọn",
+    "fallback-other": "Khác",
+    "tagMode-multicolor": "Nhiều màu",
+    "tagMode-monochrome": "Đơn sắc",
+    "tagsLoading": "Đang tải thẻ…",
+    "tagsError": "Không tải được thẻ",
+    "retry": "Thử lại"
+  },
+  "ResultSection": {
+    "tooltip-light": "Chèn prompt ánh sáng chân dung (ánh sáng điện ảnh, tia hoàng hôn, v.v.)",
+    "prompt-light": "Ánh sáng",
+    "tooltip-polish": "Chèn prompt chất lượng (độ phân giải/chi tiết/phong cách)",
+    "prompt-polish": "Chất lượng",
+    "insertSuccess": "Đã chèn",
+    "tooltip-negative": "Sao chép prompt tiêu cực vào clipboard (tránh lỗi)",
+    "prompt-negative": "Tiêu cực",
+    "prompt": "Prompt",
+    "button-copy": "Sao chép",
+    "clearSuccess": "Đã xóa",
+    "button-clear": "Xóa",
+    "tooltip-translate": "Nhập bất kỳ ngôn ngữ nào, tự động dịch sang tiếng Anh và chèn vào",
+    "button-translate": "Dịch",
+    "translateSuccess": "Đã dịch và chèn",
+    "translateEmptyError": "Vui lòng nhập nội dung",
+    "translateFailError": "Dịch thất bại",
+    "tooltip-randomColor": "Thay thế ngẫu nhiên các từ màu",
+    "button-randomcolor": "Đổi màu ngẫu nhiên",
+    "prompt-translation": "Bản dịch",
+    "translating": "Đang dịch...",
+    "randomColor-success": "Đã thay thế {count} từ màu",
+    "randomColor-noMatch": "Không có từ màu để thay thế",
+    "translateLabel": "Dịch và chèn ngay",
+    "placeholder-prompt": "Chọn thẻ để ghép tự động, hoặc tự nhập prompt của bạn",
+    "placeholder-translate": "vd. chú mèo lúc hoàng hôn"
+  },
+  "CopyToClipboard": {
+    "empty": "Nội dung trống, không có gì để sao chép",
+    "unsupported": "Trình duyệt của bạn không hỗ trợ thao tác clipboard, vui lòng thử sao chép thủ công hoặc sử dụng trình duyệt khác",
+    "success": "Đã sao chép thành công, bạn có thể dán vào công cụ vẽ AI",
+    "failure": "Sao chép không thành công, vui lòng sao chép thủ công"
+  },
+  "feedback": {
+    "feedback1": "Phản hồi và Gợi ý",
+    "feedback2": "Nếu bạn gặp bất kỳ vấn đề nào trong quá trình sử dụng hoặc có bất kỳ đề xuất hay ý tưởng nào, đừng ngần ngại cho tôi biết! Phản hồi của bạn sẽ ảnh hưởng trực tiếp đến việc phát triển và cải thiện các tính năng trong tương lai, giúp chúng tôi tạo ra một công cụ đáp ứng tốt hơn nhu cầu của mọi người.",
+    "feedback3": "Vui lòng mô tả chi tiết trường hợp sử dụng hoặc vấn đề bạn gặp phải, hoặc chia sẻ ý tưởng sáng tạo của bạn. Tôi sẽ cân nhắc kỹ lưỡng từng phản hồi và thực hiện điều chỉnh và tối ưu hóa sớm nhất có thể.",
+    "reaction0": "Tán thành",
+    "reaction1": "Ủng hộ",
+    "reaction2": "Tuyệt",
+    "reaction3": "Cái gì?",
+    "reaction4": "Khó hiểu",
+    "placeholder": "Vui lòng để lại tin nhắn, không cần đăng nhập (nhập email của bạn để nhận thông báo trả lời)"
+  },
+  "Home": {
+    "h1": "IMGPrompt · Chọn prompt như chọn <hl>màu vẽ</hl>",
+    "tagline": "5000+ thẻ song ngữ · prompt ảnh/video AI chuyên nghiệp trong vài giây · Midjourney / FLUX / GPT-Image / Veo / Kling"
+  },
+  "FAQ": {
+    "title": "Câu hỏi thường gặp",
+    "q1": {
+      "question": "IMGPrompt là gì? Hỗ trợ những mô hình AI nào?",
+      "answer": "IMGPrompt là trình biên soạn prompt cho các mô hình text-to-image, giúp bạn soạn prompt tiếng Anh qua các tag trực quan với nhãn song ngữ. Hỗ trợ chính thức Nano Banana, GPT-image-2, Midjourney, FLUX, Seedance, Veo và Kling (ảnh và video); prompt tạo ra cũng hoạt động với Stable Diffusion, DALL·E và bất kỳ mô hình nào chấp nhận cú pháp tương thích."
+    },
+    "q2": {
+      "question": "Có miễn phí không? Có cần đăng ký không? Dữ liệu có bị tải lên?",
+      "answer": "Hoàn toàn miễn phí, không cần đăng ký hay đăng nhập. Việc ghép prompt được xử lý cục bộ trong trình duyệt, không có cơ sở dữ liệu máy chủ; chỉ khi bạn dùng tính năng dịch, văn bản đó mới được gửi tới dịch vụ dịch của bên thứ ba. Dự án mã nguồn mở trên GitHub — bạn có thể kiểm tra mã hoặc tự triển khai."
+    },
+    "q7": {
+      "question": "IMGPrompt khác PromptHero, Lexica, PromptBase như thế nào?",
+      "answer": "IMGPrompt là công cụ 'nhấp để dựng' prompt, không phải công cụ tìm kiếm prompt. PromptHero, Lexica, PromptBase cho bạn duyệt hoặc mua prompt của người khác; IMGPrompt cho bạn tự dựng prompt bằng cách nhấp thẻ song ngữ trực quan. Nó chạy hoàn toàn trong trình duyệt mà không cần đăng nhập và không tải lên, trong khi các nền tảng đó thường yêu cầu tài khoản để sử dụng đầy đủ."
+    },
+    "q8": {
+      "question": "IMGPrompt có hỗ trợ các mô hình video AI như Veo, Kling, Runway không?",
+      "answer": "Có. IMGPrompt tạo prompt cho các mô hình video bao gồm Google Veo, Kling, Seedance, Runway, Hailuo, bên cạnh các mô hình ảnh. Hầu hết các trang prompt chỉ tập trung vào mô hình ảnh, nên IMGPrompt là một trong số ít công cụ miễn phí bao phủ làn sóng tạo video AI mới."
+    },
+    "q9": {
+      "question": "Tôi có thể dùng IMGPrompt mà không biết tiếng Anh không?",
+      "answer": "Có. Giao diện có sẵn ở 18 ngôn ngữ, và mỗi thẻ hiển thị cả tiếng Anh và ngôn ngữ địa phương của bạn. Bạn nhấp thẻ bằng ngôn ngữ của mình; IMGPrompt ghép prompt bằng tiếng Anh (thứ mà các mô hình AI ảnh và video thực sự cần). Nút 'Dịch' cũng chuyển bất kỳ câu nào trong ngôn ngữ của bạn thành prompt tiếng Anh chỉ với một cú nhấp."
+    }
+  },
+  "Schema": {
+    "featureList": [
+      "Miễn phí + mã nguồn mở (MIT) — không cần đăng nhập",
+      "Mô hình ảnh: Midjourney, FLUX, Nano Banana, GPT-image-2, Stable Diffusion, DALL·E",
+      "Mô hình video: Veo, Kling, Runway, Hailuo, Seedance",
+      "Giao diện 18 ngôn ngữ với thẻ trực quan song ngữ — không cần biết tiếng Anh",
+      "Soạn prompt bằng thẻ song ngữ có thể nhấp",
+      "Preset ánh sáng và chất lượng tích hợp",
+      "Thư viện prompt tiêu cực tuyển chọn",
+      "Dịch sang tiếng Anh một cú nhấp",
+      "Đề xuất thẻ thông minh",
+      "Bộ đếm 380 ký tự theo thời gian thực",
+      "Hoàn toàn cục bộ — không tải lên, không theo dõi",
+      "Mã nguồn mở trên GitHub",
+      "Ứng dụng máy tính cho Windows, macOS, Linux"
+    ]
+  },
+  "Nav": {
+    "guide": "Hướng dẫn",
+    "otherTools": "Thêm công cụ",
+    "legendtalk": "Bàn tròn nhà tư tưởng AI",
+    "aishort": "AI Short",
+    "tools": "Hộp công cụ AI",
+    "community": "Cộng đồng",
+    "github": "Xem trên GitHub",
+    "theme": "Chuyển giao diện sáng hoặc tối",
+    "language": "Chọn ngôn ngữ",
+    "languageSearch": "Tìm ngôn ngữ",
+    "languageEmpty": "Không có ngôn ngữ phù hợp",
+    "skipToPrompt": "Chuyển tới ô prompt"
+  },
+  "Guide": {
+    "fallbackNotice": "Trang này chưa được dịch sang ngôn ngữ của bạn; đang hiển thị bản tiếng Anh."
+  },
+  "Footer": {
+    "signature": "Miễn phí & mã nguồn mở · Không cần đăng nhập · Chạy ngay trên trình duyệt"
+  }
+}

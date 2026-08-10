@@ -1,0 +1,128 @@
+{
+  "Metadata": {
+    "title": "IMGPrompt — Kostenloser visueller KI-Prompt-Builder",
+    "description": "Kostenloser Open-Source-Prompt-Builder für Midjourney, FLUX, Nano Banana, Veo, Kling. Zweisprachige Tags anklicken — kein Login, läuft im Browser.",
+    "ogTitle": "IMGPrompt — KI-Kunstprompts auf einen Klick",
+    "ogDescription": "Klicke zweisprachige Tags, um Profi-Prompts für Midjourney, FLUX, Nano Banana, Veo, Kling zu bauen. Kostenlos, lokal, Open Source."
+  },
+  "ToolPage": {
+    "section1": "Thema",
+    "section2": "Kategorie",
+    "section3": "Tags",
+    "currentSelection": "Ausgewählt",
+    "fallback-other": "Sonstiges",
+    "tagMode-multicolor": "Mehrfarbig",
+    "tagMode-monochrome": "Einfarbig",
+    "tagsLoading": "Tags werden geladen…",
+    "tagsError": "Tags konnten nicht geladen werden",
+    "retry": "Erneut versuchen"
+  },
+  "ResultSection": {
+    "tooltip-light": "Beleuchtungs-Prompts einfügen (Filmbeleuchtung, Dämmerung usw.)",
+    "prompt-light": "Beleuchtung",
+    "tooltip-polish": "Qualitäts-Prompts einfügen (Auflösung/Detail/Stil)",
+    "prompt-polish": "Qualität",
+    "insertSuccess": "Eingefügt",
+    "tooltip-negative": "Negative Prompts in Zwischenablage kopieren (Fehler vermeiden)",
+    "prompt-negative": "Negativ",
+    "prompt": "Prompt",
+    "button-copy": "Kopieren",
+    "clearSuccess": "Gelöscht",
+    "button-clear": "Löschen",
+    "tooltip-translate": "Beliebige Sprache eingeben, automatisch ins Englische übersetzen",
+    "button-translate": "Übersetzen",
+    "translateSuccess": "Übersetzt und eingefügt",
+    "translateEmptyError": "Inhalt eingeben",
+    "translateFailError": "Übersetzung fehlgeschlagen",
+    "tooltip-randomColor": "Farbwörter zufällig ersetzen",
+    "button-randomcolor": "Farben zufällig ändern",
+    "prompt-translation": "Übersetzung",
+    "translating": "Wird übersetzt...",
+    "randomColor-success": "{count} Farbwörter ersetzt",
+    "randomColor-noMatch": "Keine Farbwörter zu ersetzen",
+    "translateLabel": "Übersetzen & einfügen",
+    "placeholder-prompt": "Tags auswählen oder eigenen Prompt hier eintippen",
+    "placeholder-translate": "z. B. eine Katze im Sonnenuntergang"
+  },
+  "CopyToClipboard": {
+    "empty": "Der Inhalt ist leer, nichts zu kopieren",
+    "unsupported": "Ihr Browser unterstützt keine Zwischenablage-Operationen. Bitte versuchen Sie es manuell oder verwenden Sie einen anderen Browser",
+    "success": "Erfolgreich kopiert, Sie können es in das KI-Bildtool einfügen",
+    "failure": "Kopieren fehlgeschlagen, bitte manuell kopieren"
+  },
+  "feedback": {
+    "feedback1": "Feedback und Vorschläge",
+    "feedback2": "Wenn Sie bei der Verwendung auf Probleme stoßen oder Vorschläge und Ideen haben, lassen Sie es mich gerne wissen! Ihr Feedback wird sich direkt auf die Entwicklung und Verbesserung zukünftiger Funktionen auswirken und uns dabei helfen, ein Tool zu erstellen, das den Anforderungen aller besser gerecht wird.",
+    "feedback3": "Bitte beschreiben Sie Ihren Anwendungsfall oder das aufgetretene Problem ausführlich oder teilen Sie Ihre kreativen Ideen mit. Ich werde jedes Feedback sorgfältig prüfen und so schnell wie möglich Anpassungen und Optimierungen vornehmen.",
+    "reaction0": "Daumen hoch",
+    "reaction1": "Unterstützung",
+    "reaction2": "Cool",
+    "reaction3": "Was?",
+    "reaction4": "Verwirrt",
+    "placeholder": "Bitte hinterlassen Sie eine Nachricht, kein Login erforderlich (geben Sie Ihre E-Mail-Adresse ein, um Antwortbenachrichtigungen zu erhalten)"
+  },
+  "Home": {
+    "h1": "IMGPrompt · Prompts wählen wie <hl>Farben</hl>",
+    "tagline": "5000+ zweisprachige Tags · professionelle KI-Bild/Video-Prompts in Sekunden · Midjourney / FLUX / GPT-Image / Veo / Kling"
+  },
+  "FAQ": {
+    "title": "Häufig gestellte Fragen",
+    "q1": {
+      "question": "Was ist IMGPrompt? Welche KI-Kunstmodelle werden unterstützt?",
+      "answer": "IMGPrompt ist ein Prompt-Editor für Text-zu-Bild-Modelle und hilft Ihnen, englische Prompts über visuelle, zweisprachig beschriftete Tags zusammenzusetzen. Offiziell unterstützt werden Nano Banana, GPT-image-2, Midjourney, FLUX, Seedance, Veo und Kling (Bild und Video); die erzeugten Prompts funktionieren auch mit Stable Diffusion, DALL·E und jedem Modell, das eine kompatible Syntax akzeptiert."
+    },
+    "q2": {
+      "question": "Ist es kostenlos? Muss ich mich anmelden? Werden meine Daten hochgeladen?",
+      "answer": "Völlig kostenlos, keine Registrierung oder Anmeldung. Die Prompt-Zusammenstellung wird lokal im Browser verarbeitet, ohne Backend-Datenbank; nur bei Nutzung der Übersetzungsfunktion wird dieser Text an Übersetzungsdienste von Drittanbietern gesendet. Das Projekt ist auf GitHub Open Source — Code prüfen oder selbst hosten ist möglich."
+    },
+    "q7": {
+      "question": "Wie unterscheidet sich IMGPrompt von PromptHero, Lexica oder PromptBase?",
+      "answer": "IMGPrompt ist ein Click-to-Build-Prompt-Composer, keine Prompt-Suchmaschine. PromptHero, Lexica und PromptBase ermöglichen das Durchsuchen oder Kaufen fremder Prompts; mit IMGPrompt bauen Sie Ihren eigenen Prompt durch Anklicken zweisprachiger visueller Tags. Es läuft komplett im Browser ohne Login und ohne Upload, während diese Plattformen in der Regel ein Konto für den vollen Zugriff verlangen."
+    },
+    "q8": {
+      "question": "Unterstützt IMGPrompt KI-Videomodelle wie Veo, Kling und Runway?",
+      "answer": "Ja. IMGPrompt erstellt Prompts für Videomodelle wie Google Veo, Kling, Seedance, Runway und Hailuo, zusätzlich zu Bildmodellen. Die meisten Prompt-Seiten konzentrieren sich nur auf Bildmodelle, daher ist IMGPrompt eines der wenigen kostenlosen Tools, die auch die neue Welle der KI-Videogenerierung abdeckt."
+    },
+    "q9": {
+      "question": "Kann ich IMGPrompt ohne Englischkenntnisse nutzen?",
+      "answer": "Ja. Die UI ist in 18 Sprachen verfügbar, und jeder Tag zeigt sowohl Englisch als auch Ihre Landessprache. Sie klicken in Ihrer Sprache; IMGPrompt baut den Prompt auf Englisch zusammen (was KI-Bild- und Videomodelle tatsächlich brauchen). Der Übersetzen-Button wandelt auch jeden Satz in Ihrer Sprache mit einem Klick in einen englischen Prompt um."
+    }
+  },
+  "Schema": {
+    "featureList": [
+      "Kostenlos & Open Source (MIT) — kein Login nötig",
+      "Bildmodelle: Midjourney, FLUX, Nano Banana, GPT-image-2, Stable Diffusion, DALL·E",
+      "Videomodelle: Veo, Kling, Runway, Hailuo, Seedance",
+      "18-sprachige UI mit zweisprachigen visuellen Tags — keine Englischkenntnisse nötig",
+      "Tagbasierte Prompt-Komposition per Klick",
+      "Eingebaute Licht- und Qualitäts-Presets",
+      "Kuratierte Negativprompt-Bibliothek",
+      "Ein-Klick-Übersetzung ins Englische",
+      "Intelligente Tag-Empfehlungen",
+      "Live-Zähler bis 380 Zeichen",
+      "Vollständig lokal — kein Upload, kein Tracking",
+      "Open Source auf GitHub",
+      "Desktop-Apps für Windows, macOS, Linux"
+    ]
+  },
+  "Nav": {
+    "guide": "Anleitung",
+    "otherTools": "Mehr Tools",
+    "legendtalk": "KI-Denkerrunde",
+    "aishort": "AI Short",
+    "tools": "KI-Toolbox",
+    "community": "Community",
+    "github": "Auf GitHub ansehen",
+    "theme": "Helles oder dunkles Design umschalten",
+    "language": "Sprache wählen",
+    "languageSearch": "Sprache suchen",
+    "languageEmpty": "Keine passende Sprache",
+    "skipToPrompt": "Zum Prompt-Feld springen"
+  },
+  "Guide": {
+    "fallbackNotice": "Diese Seite ist noch nicht in Ihrer Sprache verfügbar; die englische Version wird angezeigt."
+  },
+  "Footer": {
+    "signature": "Kostenlos & Open Source · Ohne Login · Läuft in deinem Browser"
+  }
+}
