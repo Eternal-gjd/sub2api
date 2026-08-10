@@ -204,6 +204,16 @@ func TestNonceHTMLPlaceholder(t *testing.T) {
 	})
 }
 
+func TestAddScriptNonce(t *testing.T) {
+	html := []byte(`<script src="/app.js"></script><script>self.__next_f.push([])</script>`)
+
+	result := addScriptNonce(html, "request-nonce")
+
+	assert.Equal(t, 2, strings.Count(string(result), `nonce="request-nonce"`))
+	assert.Contains(t, string(result), `<script nonce="request-nonce">self.__next_f.push([])</script>`)
+	assert.Equal(t, html, addScriptNonce(html, ""))
+}
+
 // mockSettingsProvider implements PublicSettingsProvider for testing
 type mockSettingsProvider struct {
 	settings any

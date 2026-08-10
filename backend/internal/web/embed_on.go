@@ -115,6 +115,14 @@ func (s *FrontendServer) Middleware() gin.HandlerFunc {
 			return
 		}
 
+		// Next's static export contains inline hydration payloads. The global CSP
+		// requires a per-request nonce, so serving these HTML files verbatim leaves
+		// the UI visible but inert: React never attaches event handlers.
+		if strings.HasPrefix(cleanPath, "img-prompt/") && strings.HasSuffix(cleanPath, ".html") {
+			s.serveStaticHTMLWithNonce(c, cleanPath)
+			return
+		}
+
 		// Serve static files normally (hashed assets get long-lived cache headers)
 		applyStaticAssetCacheHeaders(c.Writer.Header(), cleanPath)
 		s.fileServer.ServeHTTP(c.Writer, c.Request)
@@ -129,6 +137,27 @@ func (s *FrontendServer) fileExists(path string) bool {
 	}
 	_ = file.Close()
 	return true
+}
+
+func (s *FrontendServer) serveStaticHTMLWithNonce(c *gin.Context, cleanPath string) {
+	content, err := fs.ReadFile(s.distFS, cleanPath)
+	if err != nil {
+		c.String(http.StatusNotFound, "Frontend not found")
+		c.Abort()
+		return
+	}
+
+	content = addScriptNonce(content, middleware.GetNonceFromContext(c))
+	c.Header("Cache-Control", "no-cache")
+	c.Data(http.StatusOK, "text/html; charset=utf-8", content)
+	c.Abort()
+}
+
+func addScriptNonce(content []byte, nonce string) []byte {
+	if nonce == "" {
+		return content
+	}
+	return bytes.ReplaceAll(content, []byte("<script"), []byte(`<script nonce="`+nonce+`"`))
 }
 
 // tryServeOverride checks if a local override file exists and serves it.
