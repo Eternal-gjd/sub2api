@@ -15,6 +15,7 @@ import SizePickerModal from './SizePickerModal'
 import ImgPromptModal from './ImgPromptModal'
 import { CloseIcon, CollapseIcon, DictionaryIcon, ExpandIcon } from './icons'
 import type { ImgPromptApplyPayload } from '../lib/imgPromptBridge'
+import { IMG_PROMPT_GUIDE_STORAGE_KEY, OPEN_IMG_PROMPT_EVENT } from '../lib/imgPromptEntry'
 import ButtonTooltip from './input/buttonTooltip'
 import DragUploadOverlay from './input/dragUploadOverlay'
 import InputBatchBars from './input/inputBatchBars'
@@ -637,6 +638,7 @@ export default function InputBar() {
   const [mobileCollapsed, setMobileCollapsed] = useState(false)
   const [showSizePicker, setShowSizePicker] = useState(false)
   const [showImgPrompt, setShowImgPrompt] = useState(false)
+  const [showImgPromptGuide, setShowImgPromptGuide] = useState(false)
   const [showMobileUploadMenu, setShowMobileUploadMenu] = useState(false)
   const [maskPreviewUrl, setMaskPreviewUrl] = useState('')
   const [imageDragIndex, setImageDragIndex] = useState<number | null>(null)
@@ -660,6 +662,34 @@ export default function InputBar() {
   const [menuLeft, setMenuLeft] = useState(0)
   const maskConflictNoticeShownRef = useRef(false)
   const showPromptExpand = promptExpanded || promptCanExpand
+
+  const dismissImgPromptGuide = useCallback(() => {
+    setShowImgPromptGuide(false)
+    try {
+      window.localStorage.setItem(IMG_PROMPT_GUIDE_STORAGE_KEY, '1')
+    } catch {
+      // Storage may be unavailable in private browsing; hiding for this session is enough.
+    }
+  }, [])
+
+  const openImgPromptModal = useCallback(() => {
+    dismissImgPromptGuide()
+    setShowImgPrompt(true)
+  }, [dismissImgPromptGuide])
+
+  useEffect(() => {
+    const handleOpen = () => openImgPromptModal()
+    window.addEventListener(OPEN_IMG_PROMPT_EVENT, handleOpen)
+    return () => window.removeEventListener(OPEN_IMG_PROMPT_EVENT, handleOpen)
+  }, [openImgPromptModal])
+
+  useEffect(() => {
+    try {
+      setShowImgPromptGuide(window.localStorage.getItem(IMG_PROMPT_GUIDE_STORAGE_KEY) !== '1')
+    } catch {
+      setShowImgPromptGuide(true)
+    }
+  }, [])
 
   const updateInputBarClearance = useCallback(() => {
     const bar = cardRef.current?.closest<HTMLElement>('[data-input-bar]')
@@ -2016,6 +2046,29 @@ export default function InputBar() {
           onDownloadSelected={handleDownloadSelected}
           onDeleteSelected={handleDeleteSelected}
         />
+        {showImgPromptGuide && !promptExpanded && (
+          <div className="mb-2 flex items-center gap-3 rounded-2xl border border-indigo-300/60 bg-indigo-50/95 px-3 py-2.5 text-indigo-950 shadow-lg backdrop-blur dark:border-indigo-400/25 dark:bg-indigo-950/90 dark:text-indigo-50">
+            <DictionaryIcon className="h-5 w-5 shrink-0 text-indigo-600 dark:text-indigo-300" />
+            <p className="min-w-0 flex-1 text-xs sm:text-sm">
+              不知道怎么写提示词？从分类和标签快速组合专业提示词。
+            </p>
+            <button
+              type="button"
+              onClick={openImgPromptModal}
+              className="shrink-0 rounded-lg bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-indigo-500"
+            >
+              立即打开
+            </button>
+            <button
+              type="button"
+              onClick={dismissImgPromptGuide}
+              className="shrink-0 rounded-md p-1 text-indigo-500 transition-colors hover:bg-indigo-100 hover:text-indigo-700 dark:text-indigo-300 dark:hover:bg-white/10 dark:hover:text-white"
+              aria-label="关闭提示词词典引导"
+            >
+              <CloseIcon className="h-4 w-4" />
+            </button>
+          </div>
+        )}
         <div ref={cardRef} className={`bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl border border-white/50 dark:border-white/[0.08] shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] rounded-2xl sm:rounded-3xl p-3 sm:p-4 ring-1 ring-black/5 dark:ring-white/10${promptExpanded ? ' flex min-h-0 flex-1 flex-col' : ''}`}>
           {/* 移动端拖动条 */}
           <div
@@ -2195,11 +2248,12 @@ export default function InputBar() {
               <div className="flex gap-2 flex-shrink-0 mb-0.5">
                 <button
                   type="button"
-                  onClick={() => setShowImgPrompt(true)}
-                  className="p-2.5 rounded-xl bg-gray-200 dark:bg-white/[0.06] hover:bg-gray-300 dark:hover:bg-white/[0.1] text-gray-500 dark:text-gray-300 transition-all shadow-sm hover:shadow"
-                  aria-label="打开 IMGPrompt 提示词词典"
+                  onClick={openImgPromptModal}
+                  className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow"
+                  aria-label="打开提示词词典"
                 >
                   <DictionaryIcon className="h-5 w-5" />
+                  提示词词典
                 </button>
                 <div
                   className="relative"
@@ -2265,11 +2319,12 @@ export default function InputBar() {
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => setShowImgPrompt(true)}
-                  className="p-2.5 rounded-xl bg-gray-200 dark:bg-white/[0.06] hover:bg-gray-300 dark:hover:bg-white/[0.1] text-gray-500 dark:text-gray-300 transition-all shadow-sm flex-shrink-0"
-                  aria-label="打开 IMGPrompt 提示词词典"
+                  onClick={openImgPromptModal}
+                  className="inline-flex flex-shrink-0 items-center gap-1.5 rounded-xl bg-indigo-600 px-3 py-2.5 text-xs font-semibold text-white shadow-sm transition-all hover:bg-indigo-500"
+                  aria-label="打开提示词词典"
                 >
                   <DictionaryIcon className="h-5 w-5" />
+                  词典
                 </button>
                 <div
                   className="relative"
