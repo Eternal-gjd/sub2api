@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { setRequestLocale } from "next-intl/server";
 import HomeClient from "./HomeClient";
 import HeroHeader from "@/app/components/HeroHeader";
@@ -11,9 +10,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   return (
     <>
       <HeroHeader locale={locale} />
-      <Suspense>
-        <HomeClient objects={bootstrap.objects} attributes={bootstrap.attributes} firstChunk={bootstrap.firstChunk} />
-      </Suspense>
+      <HomeClient objects={bootstrap.objects} attributes={bootstrap.attributes} firstChunk={bootstrap.firstChunk} />
     </>
   );
 }
