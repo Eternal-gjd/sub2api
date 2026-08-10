@@ -1,6 +1,5 @@
 "use client";
 import { useState, useMemo, useCallback, useEffect, useRef, FC } from "react";
-import { useSearchParams } from "next/navigation";
 import { Row, Col, Flex, Segmented, Spin, Button } from "antd";
 
 import tagsData2 from "@/app/data/prompt-custom.json";
@@ -54,7 +53,6 @@ const resolveCategoryParam = (param: string | null, list: string[]): string | nu
 
 const HomeClient: FC<HomeClientProps> = ({ objects, attributes: attributesByObject, firstChunk }) => {
   const t = useTranslations("ToolPage");
-  const searchParams = useSearchParams();
   const locale = useLocale();
 
   const showGloss = locale !== "en";
@@ -130,8 +128,9 @@ const HomeClient: FC<HomeClientProps> = ({ objects, attributes: attributesByObje
     urlInitDoneRef.current = true;
 
     const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
-    const objParam = hashParams.get("object") ?? searchParams.get("object");
-    const attrParam = hashParams.get("attribute") ?? searchParams.get("attribute");
+    const queryParams = new URLSearchParams(window.location.search);
+    const objParam = hashParams.get("object") ?? queryParams.get("object");
+    const attrParam = hashParams.get("attribute") ?? queryParams.get("attribute");
 
     const objName = resolveCategoryParam(objParam, objects);
     if (objName) {
@@ -143,7 +142,7 @@ const HomeClient: FC<HomeClientProps> = ({ objects, attributes: attributesByObje
       setActiveAttribute(validAttr);
     }
     setUrlInitDone(true);
-  }, [searchParams, objects, attributesByObject]);
+  }, [objects, attributesByObject]);
 
   // 同 tab 内 hash 变化（把分享链接粘进已打开页面的地址栏 = 浏览器仅做
   // hash 跳转不重载）：init 只跑一次接不住，这里补上。分类点击走
