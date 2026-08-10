@@ -1,4 +1,7 @@
 // 单源 basePath 字面量。同时被客户端代码和 next.config.ts 消费。
-// 应用部署在域名根路径（prompt.newzone.top），docs 在 /{locale}/guide/ 子目录。
-// 修改 basePath 改这里一处即可；不要再写 env 字段或 process.env 注入。
-export const BASE_PATH = process.env.SUB2API_EMBEDDED === "1" ? "/img-prompt" : "";
+// 构建期由 SUB2API_EMBEDDED 控制；客户端 bundle 不保证暴露非 NEXT_PUBLIC_ 环境变量，
+// 因此运行于 /img-prompt/ 时也从当前 URL 推断前缀，避免词库分块请求掉到域名根路径。
+const embeddedByBuild = process.env.SUB2API_EMBEDDED === "1";
+const embeddedByURL = typeof window !== "undefined" && window.location.pathname.startsWith("/img-prompt/");
+
+export const BASE_PATH = embeddedByBuild || embeddedByURL ? "/img-prompt" : "";
